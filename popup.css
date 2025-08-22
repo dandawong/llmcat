@@ -1,0 +1,202 @@
+/*
+ ===================================================================================
+ new_popup.css - Custom Styles for Modern Popup
+ ===================================================================================
+ This file contains custom styles that complement the Tailwind CSS utility classes.
+ It includes styles that are difficult or verbose to achieve with Tailwind alone,
+ such as custom scrollbars and keyframe animations.
+ ===================================================================================
+*/
+
+/* Custom scrollbar for Webkit-based browsers (Chrome, Safari) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9; /* Corresponds to Tailwind's slate-100 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #94a3b8; /* Corresponds to Tailwind's slate-400 */
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #64748b; /* Corresponds to Tailwind's slate-500 */
+}
+
+/* Simple fade-in animation for view transitions */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Spinner animation for the search loading indicator */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* --- Markdown Content Styling --- */
+.prose {
+  line-height: 1.6;
+  color: #24292e;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.3em;
+}
+
+.prose h1 { font-size: 1.8em; }
+.prose h2 { font-size: 1.5em; }
+.prose h3 { font-size: 1.25em; }
+
+.prose p {
+  margin-bottom: 16px;
+}
+
+.prose a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.prose a:hover {
+  text-decoration: underline;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 2em;
+  margin-bottom: 16px;
+}
+
+.prose li {
+  margin-bottom: 0.25em;
+}
+
+.prose blockquote {
+  margin: 0 0 16px 0;
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+  background: rgba(74, 144, 226, 0.05);
+  padding: 10px 15px;
+  border-radius: 0 4px 4px 0;
+}
+
+.prose code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 85%;
+  padding: 0.2em 0.4em;
+  margin: 0;
+  background-color: rgba(27,31,35,0.05);
+  border-radius: 6px;
+}
+
+.prose pre {
+  position: relative;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  padding: 16px;
+  overflow: auto;
+  margin-bottom: 16px;
+  border: 1px solid #e1e4e8;
+}
+
+.prose pre code {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border-radius: 0;
+  color: inherit;
+}
+
+/* --- Copy Button Styling --- */
+.prose pre .copy-button {
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.2s ease-in-out, background-color 0.2s;
+}
+
+.prose pre:hover .copy-button {
+  opacity: 1; /* Show on hover */
+}
+
+.platform-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.platform-badge::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 20%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+  transition: left 0s; /* No transition by default */
+}
+
+.conversation-item:hover .platform-badge::after {
+  animation: shine-effect 1.5s linear;
+}
+
+@keyframes shine-effect {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+.conversation-item {
+  height: 150px !important;
+  animation: subtle-slide-in 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes subtle-slide-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Confirm Dialog Overlay Styling --- */
+@supports (backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px)) {
+  .confirm-dialog-overlay.supports-backdrop-filter {
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+}
+
+@supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+  .confirm-dialog-overlay.no-supports-backdrop-filter {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+}

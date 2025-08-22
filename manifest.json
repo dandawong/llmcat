@@ -1,0 +1,91 @@
+{
+  "manifest_version": 3,
+  "name": "LLMCat - Your Personal AI Knowledge Base",
+  "version": "0.1.0",
+  "description": "Automatically capture, manage, and search your conversations with various AI platforms.",
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab",
+    "tabs",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://chatgpt.com/*",
+    "https://gemini.google.com/*",
+    "https://claude.ai/*",
+    "https://*.tongyi.com/*",
+    "https://chat.deepseek.com/*",
+    "https://www.kimi.com/*",
+    "https://www.doubao.com/*"
+  ],
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-default.png",
+      "32": "icons/icon-default.png",
+      "48": "icons/icon-default.png",
+      "128": "icons/icon-default.png"
+    }
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon-default.png",
+    "32": "icons/icon-default.png",
+    "48": "icons/icon-default.png",
+    "128": "icons/icon-default.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content;"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "scripts/capture/interceptor.js",
+        "scripts/capture/platforms/chatgpt.js",
+        "scripts/capture/platforms/gemini.js",
+        "scripts/capture/platforms/claude.js",
+        "scripts/capture/platforms/tongyi.js",
+        "scripts/capture/platforms/deepseek.js",
+        "scripts/capture/platforms/kimi.js",
+        "scripts/capture/platforms/doubao.js",
+        "modules/logger.js"
+      ],
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
+        "https://gemini.google.com/*",
+        "https://claude.ai/*",
+        "https://*.tongyi.com/*",
+        "https://chat.deepseek.com/*",
+        "https://www.kimi.com/*",
+        "https://www.doubao.com/*"
+      ]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
+        "https://gemini.google.com/*",
+        "https://claude.ai/*",
+        "https://*.tongyi.com/*",
+        "https://chat.deepseek.com/*",
+        "https://www.kimi.com/*",
+        "https://www.doubao.com/*"
+      ],
+      "js": [
+        "scripts/capture/injector.js",
+        "scripts/capture/bridge.js"
+      ],
+      "run_at": "document_start",
+      "type": "module"
+    }
+  ]
+}

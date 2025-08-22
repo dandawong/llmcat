@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LLMCat Options</title>
+  <meta charset="UTF-8">
+  <link href="dist/options.css" rel="stylesheet">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body class="bg-gray-100 min-h-screen py-8">
+  <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <div class="flex items-center justify-center gap-2 mb-6">
+      <img id="recording-icon" src="icons/icon-recording-on.png" alt="Recording status" class="w-6 h-6">
+      <h1 class="text-2xl font-bold text-gray-800">LLMCat Settings</h1>
+    </div>
+    
+    <div class="space-y-6">
+      <div class="bg-gray-50 p-4 rounded-lg">
+        <h2 class="text-lg font-semibold text-gray-700 mb-3">Settings</h2>
+        
+        <div class="flex items-center justify-between mb-4">
+          <label for="recording-enabled" class="text-gray-700">Enable Conversation Recording</label>
+          <div class="relative inline-block w-12 h-6">
+            <input type="checkbox" id="recording-enabled" class="sr-only peer" checked>
+            <label for="recording-enabled" class="block w-12 h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300 ease-in-out peer-checked:bg-blue-500"></label>
+            <span class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 ease-in-out peer-checked:translate-x-6"></span>
+          </div>
+        </div>
+        
+        <div class="flex items-center justify-between">
+          <label for="debug-logging-enabled" class="text-gray-700">Enable Debug Logging</label>
+          <div class="relative inline-block w-12 h-6">
+            <input type="checkbox" id="debug-logging-enabled" class="sr-only peer">
+            <label for="debug-logging-enabled" class="block w-12 h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300 ease-in-out peer-checked:bg-blue-500"></label>
+            <span class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 ease-in-out peer-checked:translate-x-6"></span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-gray-50 p-4 rounded-lg">
+        <h2 class="text-lg font-semibold text-gray-700 mb-3">Statistics</h2>
+        <div id="statistics-container" class="bg-white border border-gray-200 rounded-md p-4">
+          <p class="text-gray-500">Loading statistics...</p>
+        </div>
+      </div>
+      
+      <div class="bg-gray-50 p-4 rounded-lg">
+        <h2 class="text-lg font-semibold text-gray-700 mb-3">Export Data</h2>
+        <p class="text-gray-600 mb-4">Export all your conversations to a local file.</p>
+        <div class="flex space-x-3">
+          <button id="export-json" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Export as JSON
+          </button>
+          <button id="export-markdown" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+            Export as Markdown
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module" src="options.js"></script>
+</body>
+</html>
